@@ -5,6 +5,7 @@ namespace API.Data
 {
     public class StoreContext : DbContext
     {
+        // Auto Injection
         public StoreContext(DbContextOptions options) : base(options)
         {
 
