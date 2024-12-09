@@ -7,11 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// The life cycle of dbcontext is scoped by default
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
+    // Read configuration from appsettings.Development.json in the Properties folder
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 }
@@ -26,7 +27,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
