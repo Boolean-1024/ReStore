@@ -210,11 +210,16 @@ namespace API.Data
 
             };
 
+            // AddRange(List<>) can add a 
+
             context.Products.AddRange(products);
-            // foreach (var product in products)
-            // {
-            //     context.Products.Add(product);
-            // }
+            //Equivalent expression
+/*             foreach (var product in products)
+            {
+                context.Products.Add(product);
+            } */
+
+            //Don't forget to save the changes made
             context.SaveChanges();
         }
         
