@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Add the access controll allow origin
+builder.Services.AddCors();
 // The life cycle of dbcontext is scoped by default
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
@@ -26,8 +28,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
+// Configure the Cors policy
+app.UseCors(opt => 
+{
+    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+}
+);
 app.UseAuthorization();
 
 app.MapControllers();
@@ -42,8 +48,8 @@ try
 }
 catch (Exception ex)
 {
-    logger.LogError(ex , "A problem occurred during migration");
-    
+    logger.LogError(ex, "A problem occurred during migration");
+
 }
 
 app.Run();

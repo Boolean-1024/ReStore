@@ -17,12 +17,12 @@ namespace API.Controllers
         public ProductsController(StoreContext context)
         {
             _context = context;
-            
+
         }
 
         [HttpGet]
         // Keep in mind the format of asynchronous methods
-        public async Task <ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
             // Keep in mind the context.table_name_ToListAsync() method
 
@@ -31,14 +31,14 @@ namespace API.Controllers
         }
         // The placeholder format
         // example: api/products/3
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
         //Do not forget about the params
-        public async Task <ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
 
-             return await _context.Products.FindAsync(id);
-            
+            return await _context.Products.FindAsync(id);
+
         }
-        
+
     }
 }
